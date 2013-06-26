@@ -1,5 +1,5 @@
-The Debian Package flashstreamer
---------------------------------
+Flash Streamer
+--------------
 
 This shell script designed for webcast. It takes an video stream from usb or ip
 camera and translates it on to video server for further publishing. On this way
@@ -10,6 +10,3 @@ be started and stopped individually with init script, that starts all of them
 at boot time. It also provide versatile configuration options and logging
 features.
 
-Comments regarding the Package
-
- -- Vladimir Stavrinov <vstavrinov@gmail.com>  Wed, 19 Jun 2013 14:24:11 +0400
