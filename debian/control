@@ -1,0 +1,22 @@
+Source: flashstreamer
+Section: video
+Priority: extra
+Maintainer: Vladimir Stavrinov <vstavrinov@gmail.com>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+Homepage: http://sourceforge.net/projects/flashstreamer/
+#Vcs-Git: git://git.debian.org/collab-maint/flashstreamer.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/flashstreamer.git;a=summary
+
+Package: flashstreamer
+Architecture: all
+Depends: ${misc:Depends}, libav-tools, progeny
+Description: Flash video webcast tool.
+  This shell script designed for webcast. It takes an video stream from usb or
+  ip camera and translates it onto video server for further publishing. On
+  this way it can convert a lot of formats and codecs. It operates like a
+  service. It restarts on any termination, caused by connection loosing or by
+  any other failures. You can run more then one stream in the same system.
+  Every stream can be started and stopped individually with init script, that
+  starts all of them at boot time. It also provides versatile configuration
+  options and logging features.

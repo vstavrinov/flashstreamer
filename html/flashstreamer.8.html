@@ -1,0 +1,260 @@
+<!-- Creator     : groff version 1.22.2 -->
+<!-- CreationDate: Wed Jun 26 14:15:00 2013 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>flashstreamer</title>
+
+</head>
+<body>
+
+<h1 align="center">flashstreamer</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#EXAMPLE">EXAMPLE</a><br>
+<a href="#CAVEATS">CAVEATS</a><br>
+<a href="#FILES">FILES</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+<a href="#AUTHORS">AUTHORS</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>flashstreamer</b>
+- Captures video stream from web or ip camera and sends it
+to RTMP server.</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>flashstreamer</b>
+[<b>-vdhks</b>] [<b>-c</b> <i>CONF</i>] [<b>-l</b>
+<i>LOG</i>] [<b>-D</b> <i>DEVICE</i>]</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">This shell
+script designed for webcast. It takes an video stream from
+usb or ip camera and translates it on to video server for
+further publishing. On this way it can convert a lot of
+formats and codecs. It operates like a service. It restarts
+on any termination, caused by connection loosing or by any
+other failures. You can run more then one stream in the same
+system. Every stream can be started and stopped individually
+with init script, that starts all of them at boot time. It
+also provide versatile configuration options and logging
+features.</p>
+
+<p style="margin-left:11%; margin-top: 1em">It was tested
+with crtmpserver, but should work with others. If the video
+server is running on localhost and web camera device is
+/dev/video0, You can start <b>flashstreamer</b> without
+parameters. But in general You should specify at least input
+stream source and destination host in configuration files.
+See <b>flashstreamer.conf</b>(5) for details.</p>
+
+<h2>OPTIONS
+<a name="OPTIONS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>-D</b>
+<i>DEVICE</i></p>
+
+<p style="margin-left:22%;">Web camera device, e.g.
+/dev/vdeo0 or ip camera URL</p>
+
+<p style="margin-left:11%;"><b>-c</b> <i>CONF</i></p>
+
+<p style="margin-left:22%;">Configuration file.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>-l</b> <i>LOG</i></p></td>
+<td width="2%"></td>
+<td width="18%">
+
+
+<p>Log file.</p></td>
+<td width="60%">
+</td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>-k</b></p></td>
+<td width="2%"></td>
+<td width="18%">
+
+
+<p>Kill itself.</p></td>
+<td width="60%">
+</td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>-s</b></p></td>
+<td width="2%"></td>
+<td width="18%">
+
+
+<p>Status.</p></td>
+<td width="60%">
+</td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>-h</b></p></td>
+<td width="2%"></td>
+<td width="18%">
+
+
+<p>Help.</p></td>
+<td width="60%">
+</td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>-v</b></p></td>
+<td width="2%"></td>
+<td width="18%">
+
+
+<p>Verbose.</p></td>
+<td width="60%">
+</td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>-V</b></p></td>
+<td width="2%"></td>
+<td width="18%">
+
+
+<p>Version.</p></td>
+<td width="60%">
+</td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>-d</b></p></td>
+<td width="2%"></td>
+<td width="18%">
+
+
+<p>Debug.</p></td>
+<td width="60%">
+</td></tr>
+</table>
+
+<h2>EXAMPLE
+<a name="EXAMPLE"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">If You are
+running crtmpserver on localhost and Your web camera is
+/dev/video0, You can start <b>flashstreamer</b> with default
+settings and watch video with player like vlc:</p>
+
+<p style="margin-left:11%; margin-top: 1em">vlc
+&quot;rtmp://localhost/live/webcam live=1&quot;</p>
+
+<p style="margin-left:11%; margin-top: 1em">Here in URL the
+part &quot;live&quot; is application (i.e. configuration)
+name (or alias) on the video server and &quot;webcam is
+default stream name from <b>flashstreamer</b>.</p>
+
+<h2>CAVEATS
+<a name="CAVEATS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">It may fail if
+You are using inconsistent format and codec parameters. Some
+codecs require specific parameters. In this case use
+&quot;OTHER&quot; variable in config file to specify
+arbitrary set of parameters. See <b>avconv</b>(1) for
+details</p>
+
+<h2>FILES
+<a name="FILES"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>/etc/flashstreamer/default.conf</b></p>
+
+<p style="margin-left:22%;">System wide default config</p>
+
+
+<p style="margin-left:11%;"><b>/etc/flashstreamer/local.conf</b></p>
+
+<p style="margin-left:22%;">Local config used to override
+settings in default config.</p>
+
+
+<p style="margin-left:11%;"><b>~/.config/flashstreamer/custom.conf</b></p>
+
+<p style="margin-left:22%;">Custom user config.</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>flashstreamer.conf</b>(5),
+<b>avconv</b>(1)</p>
+
+<h2>AUTHORS
+<a name="AUTHORS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Vladimir
+Stavrinov &lt;vstavrinov@gmail.com&gt;</p>
+<hr>
+</body>
+</html>
