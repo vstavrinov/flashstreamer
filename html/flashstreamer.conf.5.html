@@ -1,0 +1,286 @@
+<!-- Creator     : groff version 1.22.2 -->
+<!-- CreationDate: Wed Jun 26 14:15:00 2013 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>flashstreamer.conf</title>
+
+</head>
+<body>
+
+<h1 align="center">flashstreamer.conf</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#GLOBAL OPTIONS">GLOBAL OPTIONS</a><br>
+<a href="#INPUT OPTIONS">INPUT OPTIONS</a><br>
+<a href="#OUTPUT OPTIONS">OUTPUT OPTIONS</a><br>
+<a href="#FILES">FILES</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+<a href="#AUTHORS">AUTHORS</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>flashstreamer.conf</b>
+- Configuration file for flashstreamer.</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">This file
+sourced by flashstreamer script and contain shell variables,
+that may be overridden either by command line options or by
+settings sourced from /etc/flashstreamer/local.conf. The
+last is preferable way of configuration as main config are
+using by authors to add, remove or modify variables and will
+be overridden if it is not modified by user. So, to start
+configuration, copy /etc/flashstreamer/flashstreamer.conf to
+/etc/flashstreamer/local.conf and edit the last. All these
+variables, if not defined in config files, will set to
+it&rsquo;s defaults in flashstreamer script.</p>
+
+<h2>GLOBAL OPTIONS
+<a name="GLOBAL OPTIONS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">It is not
+stream specific. <b><br>
+CONVERTER</b></p>
+
+<p style="margin-left:22%;">Actual coder, streaming utility
+this script is based on. May be avconv from libav or ffmpeg.
+The last is not tested.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="6%">
+
+
+<p><b>NICE</b></p></td>
+<td width="5%"></td>
+<td width="78%">
+
+
+<p>Process priority, signed integer from <b>-20</b> to 19.
+This way you can give more more CPU time to flashstreamer
+then others. See <b>nice</b>(1)</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="6%">
+
+
+<p><b>LOG</b></p></td>
+<td width="5%"></td>
+<td width="78%">
+
+
+<p>Log file, e.g.
+var/log/flashstreamer/${STREAM_NAME}.log</p> </td></tr>
+</table>
+
+<h2>INPUT OPTIONS
+<a name="INPUT OPTIONS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">It is for
+source stream from camera.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p style="margin-top: 1em"><b>DEVICE</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p style="margin-top: 1em">Input source, either device file
+like /dev/vdieo0 or URL like rtsp://localhost/ipcam</p></td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>IN_FORMAT</b></p>
+
+<p style="margin-left:22%;">Input stream format, see avconv
+<b>-formats</b>.</p>
+
+<h2>OUTPUT OPTIONS
+<a name="OUTPUT OPTIONS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Define video
+published on server. <b><br>
+RESOLUTION</b></p>
+
+<p style="margin-left:22%;">Video size, e.g. 640x360</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="4%">
+
+
+<p><b>FPS</b></p></td>
+<td width="7%"></td>
+<td width="70%">
+
+
+<p>Frames per second, frame rate, integer, e.g 25</p></td>
+<td width="8%">
+</td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>THREADS</b></p>
+
+<p style="margin-left:22%;">For multiprocessing. Set it to
+number of CPU cores in Your system, e.g. 4</p>
+
+<p style="margin-left:11%;"><b>BITRATE</b></p>
+
+<p style="margin-left:22%;">Video bitrate, Kbps, e.g. 1024.
+Actually it is traffic. Less traffic - less quality.</p>
+
+<p style="margin-left:11%;"><b>OUT_FORMAT</b></p>
+
+<p style="margin-left:22%;">Output stream (file) format,
+i.e. container, e.g flv. See avconv <b>-formats</b> for
+available options.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>CODEC</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>Video codec, e.g. flv. See avconv <b>-codecs</b>.</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>HOST</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>Hostname or IP address of RTMP server, e.g.
+localhost.</p> </td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>SERVER</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>URL to connect to application like flv playback on
+server, e.g. tcp://$HOST:6666</p></td></tr>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="9%">
+
+
+<p><b>OWNER</b></p></td>
+<td width="2%"></td>
+<td width="78%">
+
+
+<p>Non-root user flashstreamer will run as, e.g. webcam</p></td></tr>
+</table>
+
+<p style="margin-left:11%;"><b>STREAM_NAME</b></p>
+
+<p style="margin-left:22%;">Meta data for server, e.g.
+webcam. It become part of url to watch video from.</p>
+
+<table width="100%" border="0" rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="7%">
+
+
+<p><b>AUDIO</b></p></td>
+<td width="4%"></td>
+<td width="78%">
+
+
+<p>Audio bitrate, e.g. &quot;<b>-ar</b> 11025&quot;,
+mandatory if You have audio stream.</p></td></tr>
+</table>
+
+<h2>FILES
+<a name="FILES"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>/etc/flashstreamer/default.conf</b></p>
+
+<p style="margin-left:22%;">System wide default config.</p>
+
+
+<p style="margin-left:11%;"><b>/etc/flashstreamer/local.conf</b></p>
+
+<p style="margin-left:22%;">Local config used to override
+settings in default config.</p>
+
+
+<p style="margin-left:11%;"><b>~/.config/flashstreamer/custom.conf</b></p>
+
+<p style="margin-left:22%;">Custom user config.</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>flashstreamer</b>(8),
+<b>avconv</b>(1)</p>
+
+<h2>AUTHORS
+<a name="AUTHORS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Vladimir
+Stavrinov &lt;vstavrinov@gmail.com&gt;</p>
+<hr>
+</body>
+</html>

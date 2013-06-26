@@ -1,0 +1,49 @@
+NAME
+flashstreamer.conf - Configuration file for flashstreamer.
+
+DESCRIPTION
+This file sourced by flashstreamer script and contain shell variables, that may be overridden either by command line options or by settings sourced from /etc/flashstreamer/local.conf. The last is preferable way of configuration as main config are using by authors to add, remove or modify variables and will be overridden if it is not modified by user. So, to start configuration, copy /etc/flashstreamer/flashstreamer.conf to /etc/flashstreamer/local.conf and edit the last. All these variables, if not defined in config files, will set to it's defaults in flashstreamer script.
+
+GLOBAL OPTIONS
+It is not stream specific.
+
+CONVERTER  Actual coder, streaming utility this script is based on. May be avconv from libav or ffmpeg. The last is not tested.
+NICE  Process priority, signed integer from -20 to 19. This way you can give more more CPU time to flashstreamer then others. See nice(1)
+LOG  Log file, e.g. var/log/flashstreamer/${STREAM_NAME}.log
+
+INPUT OPTIONS
+It is for source stream from camera.
+
+DEVICE  Input source, either device file like /dev/vdieo0 or URL like rtsp://localhost/ipcam
+IN_FORMAT  Input stream format, see avconv -formats.
+
+OUTPUT OPTIONS
+Define video published on server.
+
+RESOLUTION  Video size, e.g. 640x360
+FPS  Frames per second, frame rate, integer, e.g 25
+THREADS  For multiprocessing. Set it to number of CPU cores in Your system, e.g. 4
+BITRATE  Video bitrate, Kbps, e.g. 1024. Actually it is traffic. Less traffic - less quality.
+OUT_FORMAT  Output stream (file) format, i.e. container, e.g flv. See avconv -formats for available options.
+CODEC  Video codec, e.g. flv. See avconv -codecs.
+HOST  Hostname or IP address of RTMP server, e.g. localhost.
+SERVER  URL to connect to application like flv playback on server, e.g. tcp://$HOST:6666
+OWNER  Non-root user flashstreamer will run as, e.g. webcam
+STREAM_NAME  Meta data for server, e.g. webcam. It become part of url to watch video from.
+AUDIO  Audio bitrate, e.g. "-ar 11025", mandatory if You have audio stream.
+	
+FILES
+/etc/flashstreamer/default.conf  
+System wide default config.
+
+/etc/flashstreamer/local.conf  
+Local config used to override settings in default config.
+
+~/.config/flashstreamer/custom.conf  
+Custom user config.
+
+SEE ALSO
+flashstreamer(8), avconv(1)
+
+AUTHORS
+Vladimir Stavrinov <vstavrinov@gmail.com>

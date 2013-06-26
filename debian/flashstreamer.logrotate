@@ -1,0 +1,14 @@
+#
+/var/log/flashstreamer/*.log
+{
+        rotate 9
+        size 10M
+        missingok
+        compress
+        notifempty
+        create 0640 webcam adm
+        su webcam adm
+        postrotate
+                service flashstreamer restart
+        endscript
+}

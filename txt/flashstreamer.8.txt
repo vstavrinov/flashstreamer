@@ -1,0 +1,47 @@
+NAME
+flashstreamer - Captures video stream from web or ip camera and sends it to RTMP server.
+
+SYNOPSIS
+flashstreamer [-vdhks] [-c CONF] [-l LOG] [-D DEVICE]
+
+DESCRIPTION
+This shell script designed for webcast. It takes an video stream from usb or ip camera and translates it on to video server for further publishing. On this way it can convert a lot of formats and codecs. It operates like a service. It restarts on any termination, caused by connection loosing or by any other failures. You can run more then one stream in the same system. Every stream can be started and stopped individually with init script, that starts all of them at boot time. It also provide versatile configuration options and logging features.
+
+It was tested with crtmpserver, but should work with others. If the video server is running on localhost and web camera device is /dev/video0, You can start flashstreamer without parameters. But in general You should specify at least input stream source and destination host in configuration files. See flashstreamer.conf(5) for details.
+
+OPTIONS
+	-D DEVICE  Web camera device, e.g. /dev/vdeo0 or ip camera URL
+	-c CONF  Configuration file.
+	-l LOG  Log file.
+	-k  Kill itself.
+	-s  Status.
+	-h  Help.
+	-v  Verbose.
+	-V  Version.
+	-d  Debug.
+
+EXAMPLE
+If You are running crtmpserver on localhost and Your web camera is /dev/video0, You can start flashstreamer with default settings and watch video with player like vlc:
+
+	vlc "rtmp://localhost/live/webcam live=1"
+
+Here in URL the part "live" is application (i.e. configuration) name (or alias) on the video server and "webcam is default stream name from flashstreamer.
+
+CAVEATS
+It may fail if You are using inconsistent format and codec parameters. Some codecs require specific parameters. In this case use "OTHER" variable in config file to specify arbitrary set of parameters. See avconv(1) for details
+
+FILES
+/etc/flashstreamer/default.conf  
+System wide default config
+
+/etc/flashstreamer/local.conf  
+Local config used to override settings in default config.
+
+~/.config/flashstreamer/custom.conf  
+Custom user config.
+
+SEE ALSO
+flashstreamer.conf(5), avconv(1)
+
+AUTHORS
+Vladimir Stavrinov <vstavrinov@gmail.com>
