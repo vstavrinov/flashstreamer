@@ -1,3 +1,13 @@
+flashstreamer (1.0.1) unstable; urgency=low
+
+  * Remove Email from README
+  * Add depends on adduser.
+  * Refine Description formatting.
+  * Abandon using /lib/init/vars.sh
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Wed, 26 Jun 2013 18:48:03 +0400
+
+
 flashstreamer (1.0.0) unstable; urgency=low
 
   * Initial Release.
