@@ -37,7 +37,7 @@ STREAMS=($(ls /$ETC/flashstreamer/enabled))
 [ -n "$2" ] && STREAMS=($2)
 
 # Load the VERBOSE setting and other rcS variables
-. /lib/init/vars.sh
+#. /lib/init/vars.sh
 
 # Define LSB log_* functions.
 # Depend on lsb-base (>= 3.2-14) to ensure that this file is present
