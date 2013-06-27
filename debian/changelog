@@ -1,6 +1,5 @@
-flashstreamer (1.0.2) UNRELEASED; urgency=low
+flashstreamer (1.0.2) unstable; urgency=low
 
-  * .
   * Fix missing install and manpages lists.
 
  -- Vladimir Stavrinov <vstavrinov@gmail.com>  Thu, 27 Jun 2013 12:29:48 +0400
