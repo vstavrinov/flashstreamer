@@ -1,0 +1,3 @@
+flashstreamer	usr/bin
+default.conf	etc/flashstreamer
+keepalive.conf	etc/sysctl.d
