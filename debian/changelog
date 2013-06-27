@@ -1,3 +1,10 @@
+flashstreamer (1.0.2) UNRELEASED; urgency=low
+
+  * .
+  * Fix missing install and manpages lists.
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Thu, 27 Jun 2013 12:29:48 +0400
+
 flashstreamer (1.0.1) unstable; urgency=low
 
   * Remove Email from README
