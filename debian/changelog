@@ -1,3 +1,9 @@
+flashstreamer (1.0.6) unstable; urgency=low
+
+  * Error handle when no config available.
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Wed, 03 Jul 2013 13:17:58 +0400
+
 flashstreamer (1.0.5) unstable; urgency=low
 
   * Remove extra update-rc.d call.
