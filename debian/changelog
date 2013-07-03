@@ -1,3 +1,10 @@
+flashstreamer (1.0.3) unstable; urgency=low
+
+  * Update changelog for 1.0.2 release
+  * Fixes: added "available" and "enabled" directories for configs.
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Wed, 03 Jul 2013 12:19:35 +0400
+
 flashstreamer (1.0.2) unstable; urgency=low
 
   * Fix missing install and manpages lists.
