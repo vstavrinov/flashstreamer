@@ -1,3 +1,9 @@
+flashstreamer (1.0.8) unstable; urgency=low
+
+  * Fixed version and E-mail.
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Wed, 03 Jul 2013 14:08:51 +0400
+
 flashstreamer (1.0.7) unstable; urgency=low
 
   * More distinct error message.
