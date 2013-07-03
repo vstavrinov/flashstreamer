@@ -29,6 +29,8 @@ case "$1" in
 	# Create directories for log 
 	# install also fixes permissions.
 	install -d -owebcam -gadm -m2750 /var/log/flashstreamer
+	install -d  /etc/flashstreamer/enabled
+	install -d  /etc/flashstreamer/available
    ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
