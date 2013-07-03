@@ -31,6 +31,7 @@ case "$1" in
 	install -d -owebcam -gadm -m2750 /var/log/flashstreamer
 	install -d  /etc/flashstreamer/enabled
 	install -d  /etc/flashstreamer/available
+	update-rc.d flashstreamer defaults
    ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
