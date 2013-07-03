@@ -1,8 +1,10 @@
 #!/bin/bash
 
 DESCRIPTION="Capture video stream from web camera and send it to RTMP server"
-COPYRIGHT="(C) Vladimir Stavrinov <vs@playfast-tech.com> 2013"
-VERSION=1.0.0
+COPYRIGHT="(C) Vladimir Stavrinov <vstavrinov@gmail.com> 2013"
+VERSION=1.0.8
+
+#set -x -v
 
 PATH=/opt/bin:/bin:/usr/bin:/sbin:/usr/sbin
 SELF="$(basename $0)"
