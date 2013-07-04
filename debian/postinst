@@ -26,6 +26,7 @@ case "$1" in
 	  echo 'Adding system-user flashstreamer' 1>&2
 	  adduser --system  --quiet --shell /bin/false --home /dev/null \
 	    --no-create-home --ingroup adm  --disabled-login $PUSER
+	  usermod -aG video,audio $PUSER
 	fi
 	# Create directories for log 
 	# install also fixes permissions.
