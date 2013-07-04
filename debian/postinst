@@ -17,18 +17,19 @@ set -e
 # for details, see http://www.debian.org/doc/debian-policy/ or
 # the debian-policy package
 
+PUSER=webcam
 
 case "$1" in
     configure)
 
- 	if ! getent passwd webcam > /dev/null ; then
+ 	if ! getent passwd $PUSER > /dev/null ; then
 	  echo 'Adding system-user flashstreamer' 1>&2
 	  adduser --system  --quiet --shell /bin/false --home /dev/null \
-	    --no-create-home --ingroup adm  --disabled-login 
+	    --no-create-home --ingroup adm  --disabled-login $PUSER
 	fi
 	# Create directories for log 
 	# install also fixes permissions.
-	install -d -owebcam -gadm -m2750 /var/log/flashstreamer
+	install -d -o$PUSER -gadm -m2750 /var/log/flashstreamer
 	install -d  /etc/flashstreamer/enabled
 	install -d  /etc/flashstreamer/available
    ;;
