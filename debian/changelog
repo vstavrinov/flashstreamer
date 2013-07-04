@@ -1,3 +1,9 @@
+flashstreamer (1.0.9) unstable; urgency=low
+
+  * Bug fixes: add username
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Thu, 04 Jul 2013 12:45:12 +0400
+
 flashstreamer (1.0.8) unstable; urgency=low
 
   * Fixed version and E-mail.
