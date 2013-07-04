@@ -1,3 +1,9 @@
+flashstreamer (1.0.10) unstable; urgency=low
+
+  * Bug fixes: add user in groups video & audio.
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Thu, 04 Jul 2013 18:23:50 +0400
+
 flashstreamer (1.0.9) unstable; urgency=low
 
   * Bug fixes: add username
