@@ -1,6 +1,7 @@
-flashstreamer (1.0.11) fresh; urgency=low
+flashstreamer (1.0.11) unstable; urgency=low
 
-  * logroate: added copytruncate, delaycompress and removed restart init script: removed restart
+  * logroate: added copytruncate, delaycompress and removed restart 
+  * init script: removed restart
 
  -- Vladimir Stavrinov <vstavrinov@gmail.com>  Wed, 10 Jul 2013 14:10:38 +0400
 
