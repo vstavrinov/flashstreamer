@@ -1,3 +1,9 @@
+flashstreamer (1.0.11) fresh; urgency=low
+
+  * logroate: added copytruncate, delaycompress and removed restart init script: removed restart
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Wed, 10 Jul 2013 14:10:38 +0400
+
 flashstreamer (1.0.10) unstable; urgency=low
 
   * Bug fixes: add user in groups video & audio.
