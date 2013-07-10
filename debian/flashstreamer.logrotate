@@ -5,10 +5,9 @@
         size 10M
         missingok
         compress
+	delaycompress
         notifempty
+	copytruncate
         create 0640 webcam adm
         su webcam adm
-        postrotate
-                service flashstreamer restart
-        endscript
 }
