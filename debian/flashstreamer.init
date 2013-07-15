@@ -16,16 +16,12 @@
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 SELF="$(basename $0)"
-PID="$(ps ho pid -C $SELF)"
-PID=${PID/$$/}
-PID=${PID/ /}
 ETC="etc"
 
 DESC="Flash video streamer"
 NAME=flashstreamer
 DAEMON=/usr/bin/$NAME
 DAEMON_ARGS=""
-PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 INITTAB="2:respawn:$DAEMON -c /$ETC/$NAME/enabled"
 
@@ -99,18 +95,18 @@ do_stop()
 	return $RETRUN
 }
 
-#
-# Function that sends a SIGHUP to the daemon/service
-#
-do_reload() {
-	#
-	# If the daemon can reload its configuration without
-	# restarting (for example, when it is sent a SIGHUP),
-	# then implement that here.
-	#
-	return 0
-	start-stop-daemon --stop --signal 1 --quiet --pidfile $PIDFILE --name $NAME
-	return 0
+stream_pids() {
+	for CONF in "${STREAMS[@]}"; do
+		PROGENY=$(progeny $(ps wwuh -C flashstreamer | 
+		awk "/-c \/$ETC\/$NAME\/enabled\/$CONF/ {print \$2}"))
+		if [ -n "$PROGENY" ]; then
+			STREAM_PIDS="$STREAM_PIDS $(echo -n $PROGENY | awk '{print $NF}') "
+			: ${RETRUN:=0}
+		else
+			echo "$CONF not running."
+			RETRUN=1
+		fi
+	done
 }
 
 case "$1" in
@@ -131,15 +127,16 @@ case "$1" in
 	esac
 	;;
   status)
-	if [ -n "$PID" ]; then
-		for ROOT in "$PID"; do
-			ps wwfo user,pid,nice,tt,stat,lstart,command $(progeny $ROOT)
-		done
-	else
-		echo $NAME not running.
-	fi
-	exit 0
-	status_of_proc "$DAEMON" "$NAME" && exit 0 || exit $?
+	stream_pids
+	[ -n "$STREAM_PIDS" ] &&
+	ps wwuf $STREAM_PIDS
+	exit $RETRUN
+	;;
+  restart)
+	stream_pids
+	[ -n "$STREAM_PIDS" ] &&
+	kill $STREAM_PIDS
+	exit $RETRUN
 	;;
   *)
 	echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}" >&2
