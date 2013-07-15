@@ -110,7 +110,7 @@ shift  $[$OPTIND - 1]
 : ${RESOLUTION:="640x360"}
 : ${FPS:="25"}
 : ${THREADS:="4"}
-: ${BITRATE:="1024"}
+: ${BITRATE:="1024k"}
 : ${OUT_FORMAT:="flv"}
 : ${CODEC:="flv"}
 : ${HOST=:"localhost"}
