@@ -1,3 +1,9 @@
+flashstreamer (1.0.12) unstable; urgency=low
+
+  * Returned new restart and rewritten status options
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Mon, 15 Jul 2013 11:53:56 +0400
+
 flashstreamer (1.0.11) unstable; urgency=low
 
   * logroate: added copytruncate, delaycompress and removed restart 
