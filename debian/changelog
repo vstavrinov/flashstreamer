@@ -1,14 +1,8 @@
 flashstreamer (1.1.1) unstable; urgency=low
 
-  * Update changelog for 1.1.1 release
+  * Fixed /default bitrate
 
  -- Vladimir Stavrinov <vstavrinov@gmail.com>  Mon, 15 Jul 2013 12:42:55 +0400
-
-flashstreamer (1.1.1) unstable; urgency=low
-
-  * UNRELEASED
-
- -- Vladimir Stavrinov <vs@mana.pointmmo.com>  Mon, 15 Jul 2013 12:40:04 +0400
 
 flashstreamer (1.0.12) unstable; urgency=low
 
