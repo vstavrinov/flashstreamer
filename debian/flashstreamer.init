@@ -129,7 +129,7 @@ case "$1" in
   status)
 	stream_pids
 	[ -n "$STREAM_PIDS" ] &&
-	ps wwuf $STREAM_PIDS
+	ps wwo user,pid,nice,tt,stat,lstart,command $STREAM_PIDS
 	exit $RETRUN
 	;;
   restart)

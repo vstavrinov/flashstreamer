@@ -2,9 +2,19 @@
 
 DESCRIPTION="Capture video stream from web camera and send it to RTMP server"
 COPYRIGHT="(C) Vladimir Stavrinov <vstavrinov@gmail.com> 2013"
-VERSION=1.1.1
+VERSION=1.2.1
 
-#set -x -v
+OWNER=webcam
+if [ $(id -u) != $(id -u $OWNER) ]; then
+	if ! sudo -A /bin/true -u $OWNER : 2> /dev/null; then
+		echo "
+		Insufficient privileges.
+		You should have permission to run $CONVERTER as user $OWNER
+		"
+		exit 1
+	fi
+	exec sudo -u $OWNER $0 "$@"
+fi
 
 PATH=/opt/bin:/bin:/usr/bin:/sbin:/usr/sbin
 SELF="$(basename $0)"
@@ -116,22 +126,18 @@ shift  $[$OPTIND - 1]
 : ${HOST=:"localhost"}
 : ${SERVER:="tcp://$HOST:6666"}
 : ${CONVERTER:="avconv"}
-: ${OTHER:=""}
+: ${IN_OPTIONS:=""}
+: ${OUT_OPTIONS:=""}
+: ${STREAM_PIPE:=""}
 
 : ${NICE:=-0}
-: ${OWNER:="webcam"}
 : ${IN_FORMAT:="video4linux2"}
 : ${DEVICE:="/dev/video0"}
 : ${STREAM_NAME:="webcam"}
 : ${LOG:="/var/log/flashstreamer/${STREAM_NAME}.log"}
+[ -n "$STREAM_PIPE" ] && DEVICE=" - "
 
-if ! sudo -A /bin/true -u $OWNER : 2> /dev/null; then
-        echo "
-        Insufficient privileges.
-        You should have permission to run $CONVERTER as user $OWNER
-        "
-        exit 1
-fi
+
 
 if ! [ -d "$(dirname $LOG)" ]; then
 	mkdir -pm g+ws "$(dirname $LOG)"
@@ -142,21 +148,21 @@ umask g+w
 exec > $LOG 2>&1 
 date
 set -x
-nice -n $NICE sudo -u $OWNER $CONVERTER \
+eval "nice -n $NICE $STREAM_PIPE $CONVERTER \
 	${VERBOSE:+-v info} \
 	-threads $THREADS \
 		-f $IN_FORMAT \
-		$OTHER \
 		-vf hqdn3d \
+		$IN_OPTIONS \
 	-i $DEVICE \
-	$AUDIO \
+		$OUT_OPTIONS \
+		$AUDIO \
 		-r $FPS \
-		$FREQUENCY \
 		-b $BITRATE \
 		-vcodec $CODEC \
 		-bufsize 0 \
 		-f $OUT_FORMAT \
 		-s $RESOLUTION \
 		-metadata streamName=$STREAM_NAME \
-	$SERVER
+	$SERVER"
 
