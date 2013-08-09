@@ -1,6 +1,13 @@
+flashstreamer (1.2.3) unstable; urgency=low
+
+  * Copytruncate in logrotate replaced with postscript.
+  * Fixed version number.
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Fri, 09 Aug 2013 15:55:45 +0400
+
 flashstreamer (1.2.2) unstable; urgency=low
 
-  *   * Added gawk to dependencies.
+  * Added gawk to dependencies.
 
  -- Vladimir Stavrinov <vstavrinov@gmail.com>  Tue, 23 Jul 2013 18:33:25 +0400
 
