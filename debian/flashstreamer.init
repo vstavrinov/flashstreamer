@@ -86,12 +86,41 @@ do_stop()
 		if grep -q ":$INITTAB/${CONF}" /etc/inittab; then
 			sed -i "\%:$INITTAB/${CONF}%d" /etc/inittab
 			telinit q
+			do_kill
 			: ${RETRUN:=0}
 		else
 			echo "not running."
 			RETRUN=1
 		fi
 	done
+	return $RETRUN
+}
+
+do_kill()
+{
+	stream_pids
+	if [ -n "$STREAM_PIDS" ]; then
+		kill $STREAM_PIDS
+		sleep 3
+		stream_pids
+		if [ -n "$STREAM_PIDS" ]; then
+			kill -QUIT $STREAM_PIDS
+			sleep 1
+			stream_pids
+			[ -n "$STREAM_PIDS" ] &&
+			kill -KILL $STREAM_PIDS
+			stream_pids
+			if [ -n "$STREAM_PIDS" ]; then
+				echo "
+				Can not kill streams:
+				"
+				ps wwo user,pid,nice,tt,stat,lstart,command $STREAM_PIDS
+				RETURN=1
+			else
+				RETURN=0
+			fi
+		fi
+	fi
 	return $RETRUN
 }
 
@@ -103,10 +132,10 @@ stream_pids() {
 			STREAM_PIDS="$STREAM_PIDS $(echo -n $PROGENY | awk '{print $NF}') "
 			: ${RETRUN:=0}
 		else
-			echo "$CONF not running."
 			RETRUN=1
 		fi
 	done
+	return $RETRUN
 }
 
 case "$1" in
@@ -128,15 +157,22 @@ case "$1" in
 	;;
   status)
 	stream_pids
-	[ -n "$STREAM_PIDS" ] &&
-	ps wwo user,pid,nice,tt,stat,lstart,command $STREAM_PIDS
+	if [ -n "$STREAM_PIDS" ]; then
+		ps wwo user,pid,nice,tt,stat,lstart,command $STREAM_PIDS
+	else
+		echo "
+		Streams \"${STREAMS[@]}\" not running.
+		"
+	fi
 	exit $RETRUN
 	;;
   restart)
-	stream_pids
-	[ -n "$STREAM_PIDS" ] &&
-	kill $STREAM_PIDS
-	exit $RETRUN
+	$0 stop ${STREAMS[@]}
+	sleep 2
+	$0 start ${STREAMS[@]}
+	sleep 2
+	$0 status ${STREAMS[@]}
+	exit $RETURN
 	;;
   *)
 	echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}" >&2
