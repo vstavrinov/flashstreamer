@@ -99,22 +99,22 @@ do_stop()
 do_kill()
 {
 	stream_pids
-	if [ -n "$STREAM_PIDS" ]; then
-		kill $STREAM_PIDS
+	if [ -n "$HERD" ]; then
+		kill $HERD
 		sleep 3
 		stream_pids
-		if [ -n "$STREAM_PIDS" ]; then
-			kill -QUIT $STREAM_PIDS
+		if [ -n "$HERD" ]; then
+			kill -QUIT $HERD
 			sleep 1
 			stream_pids
-			[ -n "$STREAM_PIDS" ] &&
-			kill -KILL $STREAM_PIDS
+			[ -n "$HERD" ] &&
+			kill -KILL $HERD
 			stream_pids
-			if [ -n "$STREAM_PIDS" ]; then
+			if [ -n "$HERD" ]; then
 				echo "
 				Can not kill streams:
 				"
-				ps wwo user,pid,nice,tt,stat,lstart,command $STREAM_PIDS
+				ps wwo user,pid,nice,tt,stat,lstart,command $HERD
 				RETURN=1
 			else
 				RETURN=0
@@ -126,10 +126,10 @@ do_kill()
 
 stream_pids() {
 	for CONF in "${STREAMS[@]}"; do
-		PROGENY=$(progeny $(ps wwuh -C flashstreamer | 
-		awk "/-c \/$ETC\/$NAME\/enabled\/$CONF/ {print \$2}"))
-		if [ -n "$PROGENY" ]; then
-			STREAM_PIDS="$STREAM_PIDS $(echo -n $PROGENY | awk '{print $NF}') "
+		PID=$(ps wwuh -C avconv |
+		awk "/-metadata streamName=$CONF/ {print \$2}")
+		if [ -n "$PID" ]; then
+			HERD="$HERD $PID"
 			: ${RETRUN:=0}
 		else
 			RETRUN=1
@@ -157,8 +157,8 @@ case "$1" in
 	;;
   status)
 	stream_pids
-	if [ -n "$STREAM_PIDS" ]; then
-		ps wwo user,pid,nice,tt,stat,lstart,command $STREAM_PIDS
+	if [ -n "$HERD" ]; then
+		ps wwo user,pid,nice,tt,stat,lstart,command $HERD
 	else
 		echo "
 		Streams \"${STREAMS[@]}\" not running.
