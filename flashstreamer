@@ -2,7 +2,7 @@
 
 DESCRIPTION="Capture video stream from web camera and send it to RTMP server"
 COPYRIGHT="(C) Vladimir Stavrinov <vstavrinov@gmail.com> 2013"
-VERSION=1.2.4
+VERSION=1.2.6
 
 OWNER=webcam
 if [ $(id -u) != $(id -u $OWNER) ]; then
