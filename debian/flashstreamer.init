@@ -23,6 +23,7 @@ NAME=flashstreamer
 DAEMON=/usr/bin/$NAME
 DAEMON_ARGS=""
 SCRIPTNAME=/etc/init.d/$NAME
+WAIT=5
 INITTAB="2:respawn:$DAEMON -c /$ETC/$NAME/enabled"
 
 # Exit if the package is not installed
@@ -101,15 +102,27 @@ do_kill()
 	stream_pids
 	if [ -n "$HERD" ]; then
 		kill $HERD
-		sleep 3
 		stream_pids
-		if [ -n "$HERD" ]; then
-			kill -QUIT $HERD
+		MORE=$WAIT
+		while [ -n "$HERD" ] && [ $[MORE--] -gt 0 ]; do
 			sleep 1
 			stream_pids
-			[ -n "$HERD" ] &&
-			kill -KILL $HERD
-			stream_pids
+		done
+		if [ -n "$HERD" ]; then
+			kill -QUIT $HERD
+			MORE=$WAIT
+			while [ -n "$HERD" ] && [ $[MORE--] -gt 0 ]; do
+				sleep 1
+				stream_pids
+			done
+			if [ -n "$HERD" ]; then
+				kill -KILL $HERD
+				MORE=$WAIT
+				while [ -n "$HERD" ] && [ $[MORE--] -gt 0 ]; do
+					sleep 1
+					stream_pids
+				done
+			fi
 			if [ -n "$HERD" ]; then
 				echo "
 				Can not kill streams:
@@ -126,6 +139,7 @@ do_kill()
 
 stream_pids() {
 	for CONF in "${STREAMS[@]}"; do
+		unset HERD
 		PID=$(ps wwuh -C avconv |
 		awk "/-metadata streamName=$CONF/ {print \$2}")
 		if [ -n "$PID" ]; then
@@ -168,9 +182,8 @@ case "$1" in
 	;;
   restart)
 	$0 stop ${STREAMS[@]}
-	sleep 2
 	$0 start ${STREAMS[@]}
-	sleep 2
+	sleep 1
 	$0 status ${STREAMS[@]}
 	exit $RETURN
 	;;
