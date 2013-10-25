@@ -1,3 +1,9 @@
+flashstreamer (1.2.6) unstable; urgency=low
+
+  * Init script optimization and bug fixing.
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Fri, 25 Oct 2013 11:20:30 +0400
+
 flashstreamer (1.2.5) unstable; urgency=low
 
   * Find stream pid by metadata option.
