@@ -1,3 +1,9 @@
+flashstreamer (1.2.9) unstable; urgency=medium
+
+  * out-of-date-standards-version 3.9.4 (current is 3.9.5)
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Thu, 16 Jan 2014 12:14:27 +0400
+
 flashstreamer (1.2.8) unstable; urgency=medium
 
   * Bug fixing: report status when config and stream names are differ
