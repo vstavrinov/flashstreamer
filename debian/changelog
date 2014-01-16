@@ -1,3 +1,9 @@
+flashstreamer (1.2.8) unstable; urgency=medium
+
+  * Bug fixing: report status when config and stream names are differ
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Thu, 16 Jan 2014 12:09:29 +0400
+
 flashstreamer (1.2.7) unstable; urgency=low
 
   * Move unset HERD variable before configs processing cycle.
