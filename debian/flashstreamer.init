@@ -64,6 +64,9 @@ do_start()
 		if ! grep -q ":$INITTAB/${CONF}" /etc/inittab; then
 			echo "v$((++ID)):$INITTAB/${CONF}" >> /etc/inittab
 			telinit q
+			. /$ETC/$NAME/enabled/$CONF
+			echo
+			echo "View video at \"rtmp://$HOST/live/$STREAM_NAME live=1\""
 			: ${RETRUN:=0}
 		else
 			echo already running.
