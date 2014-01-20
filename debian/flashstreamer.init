@@ -145,8 +145,11 @@ stream_pids() {
 	for CONF in "${STREAMS[@]}"; do
 		PID=$(ps wwuh -C avconv |
 		awk "
-		/-metadata streamName=$(sh -c ". /$ETC/$NAME/enabled/$CONF; echo \$STREAM_NAME")/ {
-		print \$2}")
+		/-metadata streamName=$(
+			sh -c ". /$ETC/$NAME/enabled/$CONF; 
+				echo \$STREAM_NAME" |
+				sed 's/?/\\?/g'
+		)/ { print \$2}")
 		if [ -n "$PID" ]; then
 			HERD="$HERD $PID"
 			: ${RETRUN:=0}
