@@ -1,3 +1,9 @@
+flashstreamer (1.2.13) unstable; urgency=medium
+
+  * Move input options (IN_OPTIONS) to the most left position in command line to make possible using more input devices.
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Mon, 17 Mar 2014 11:47:18 +0400
+
 flashstreamer (1.2.12) unstable; urgency=medium
 
   * Escape question mark to fix status.
