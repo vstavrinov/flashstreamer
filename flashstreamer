@@ -153,8 +153,8 @@ eval "nice -n $NICE $STREAM_PIPE $CONVERTER \
 	-threads $THREADS \
 		$IN_OPTIONS \
 		-f $IN_FORMAT \
-		-vf hqdn3d \
 	-i $DEVICE \
+		-vf hqdn3d \
 		$OUT_OPTIONS \
 		$AUDIO \
 		-r $FPS \
@@ -164,5 +164,5 @@ eval "nice -n $NICE $STREAM_PIPE $CONVERTER \
 		-f $OUT_FORMAT \
 		-s $RESOLUTION \
 		-metadata streamName=$STREAM_NAME \
-	$SERVER"
+	\"$SERVER\""
 
