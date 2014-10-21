@@ -1,3 +1,9 @@
+flashstreamer (1.2.14) unstable; urgency=medium
+
+  * Accommodate libav updates: move video filter to input stream. Quoted "$SERVER" URL to allow space delimited options after it.
+
+ -- Vladimir Stavrinov <vstavrinov@gmail.com>  Tue, 21 Oct 2014 10:49:17 +0400
+
 flashstreamer (1.2.13) unstable; urgency=medium
 
   * Move input options (IN_OPTIONS) to the most left position in command line to make possible using more input devices.
