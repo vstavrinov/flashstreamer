@@ -6,7 +6,8 @@ flashstreamer (1.2.15) unstable; urgency=medium
 
 flashstreamer (1.2.14) unstable; urgency=medium
 
-  * Accommodate libav updates: move video filter to input stream. Quoted "$SERVER" URL to allow space delimited options after it.
+  * Accommodate libav updates: move video filter to output stream. 
+  * Quoted "$SERVER" URL to allow space delimited options after it.
 
  -- Vladimir Stavrinov <vstavrinov@gmail.com>  Tue, 21 Oct 2014 10:49:17 +0400
 

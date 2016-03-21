@@ -4,9 +4,9 @@ Priority: extra
 Maintainer: Vladimir Stavrinov <vstavrinov@gmail.com>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.5
-Homepage: http://sourceforge.net/projects/flashstreamer/
-#Vcs-Git: git://git.debian.org/collab-maint/flashstreamer.git
-#Vcs-Browser: http://git.debian.org/?p=collab-maint/flashstreamer.git;a=summary
+Homepage: https://github.com/vstavrinov/flashstreamer
+Vcs-Git: git://github.com/vstavrinov/flashstreamer.git
+Vcs-Browser: https://github.com/vstavrinov/flashstreamer
 
 Package: flashstreamer
 Architecture: all
